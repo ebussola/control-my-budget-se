@@ -7,9 +7,11 @@
  */
 
 return array(
-    'driver' => 'pdo_mysql',
-    'user' => '',
-    'password' => '',
-    'host' => '',
-    'dbname' => ''
+    'db' => array(
+        'driver' => 'pdo_mysql',
+        'user' => '',
+        'password' => '',
+        'host' => '',
+        'dbname' => ''
+    )
 );
