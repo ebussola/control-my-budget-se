@@ -21,6 +21,12 @@ class Version20140212112408 extends AbstractMigration {
         $table->addColumn('monthly_goal_id', 'integer');
 
         $table->setPrimaryKey(array('id'));
+        $table->addForeignKeyConstraint(
+            $schema->getTable('monthly_goal'),
+            array('monthly_goal_id'),
+            array('id'),
+            array('onDelete' => 'CASCADE')
+        );
     }
 
     public function down(Schema $schema) {
