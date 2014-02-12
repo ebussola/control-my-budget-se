@@ -1,0 +1,3 @@
+name: Control My Budget SE
+migrations_namespace: ControlMyBudgetMigration
+migrations_directory: migrations

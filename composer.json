@@ -1,0 +1,19 @@
+{
+    "name": "shina/control-my-budget-se",
+    "description": "Control My Budget Standard Edition",
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "Leonardo Shinagawa",
+            "email": "leonardo@ebussola.com"
+        }
+    ],
+
+    "require": {
+        "shina/control-my-budget": "~0.1",
+        "doctrine/dbal": "~2.4",
+        "symfony/console": "~2.4",
+        "doctrine/migrations": "1.0.*@dev",
+        "symfony/yaml": "~2.4"
+    }
+}

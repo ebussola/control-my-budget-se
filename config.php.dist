@@ -1,0 +1,15 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Leonardo Shinagawa
+ * Date: 12/02/14
+ * Time: 11:19
+ */
+
+return array(
+    'driver' => 'pdo_mysql',
+    'user' => '',
+    'password' => '',
+    'host' => '',
+    'dbname' => ''
+);
