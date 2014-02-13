@@ -24,7 +24,11 @@ $cli->addCommands(array(
     new \Doctrine\DBAL\Migrations\Tools\Console\Command\GenerateCommand(),
     new \Doctrine\DBAL\Migrations\Tools\Console\Command\MigrateCommand(),
     new \Doctrine\DBAL\Migrations\Tools\Console\Command\StatusCommand(),
-    new \Doctrine\DBAL\Migrations\Tools\Console\Command\VersionCommand()
+    new \Doctrine\DBAL\Migrations\Tools\Console\Command\VersionCommand(),
+    new \ebussola\job\console\InitCommand(),
+    new \ebussola\job\console\DaemonCommand(),
+    new \ebussola\job\console\RefreshJobsCommand(),
+    new \ebussola\job\console\ListJobsCommand()
 ));
 
 $cli->run();

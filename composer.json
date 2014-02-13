@@ -8,12 +8,17 @@
             "email": "leonardo@ebussola.com"
         }
     ],
+    "autoload": {
+        "psr-0": {"shina\\controlmybudget\\": "src/"}
+    },
 
     "require": {
-        "shina/control-my-budget": "~0.1",
+        "shina/control-my-budget": "~0.2",
         "doctrine/dbal": "~2.4",
         "symfony/console": "~2.4",
         "doctrine/migrations": "1.0.*@dev",
-        "symfony/yaml": "~2.4"
+        "symfony/yaml": "~2.4",
+        "ebussola/job-schedule-se": "~0.12",
+        "slim/slim": "~2.4"
     }
 }
