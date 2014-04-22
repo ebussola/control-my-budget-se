@@ -28,7 +28,8 @@ $cli->addCommands(array(
     new \ebussola\job\console\InitCommand(),
     new \ebussola\job\console\DaemonCommand(),
     new \ebussola\job\console\RefreshJobsCommand(),
-    new \ebussola\job\console\ListJobsCommand()
+    new \ebussola\job\console\ListJobsCommand(),
+    new \shina\controlmybudget\command\EmailImport()
 ));
 
 $cli->run();
