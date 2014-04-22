@@ -95,6 +95,23 @@ class DoctrineDBAL implements DataProvider {
     }
 
     /**
+     * @param string $hash
+     *
+     * @return array
+     */
+    public function findPurchaseByHash($hash)
+    {
+        $query = $this->conn->createQueryBuilder()
+            ->select($this->_purchase_fields)
+            ->from($this->_purchase_table_name, 'p')
+            ->where('hash = ?');
+
+        $data = $this->conn->executeQuery($query, [$hash])->fetch();
+
+        return $data;
+    }
+
+    /**
      * @param array $data
      *
      * @return int

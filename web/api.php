@@ -62,6 +62,8 @@ $app->post('/goals', function() use ($app) {
     $monthly_goal_controller->addGoalAction();
 });
 
+//@todo make events api
+
 $app->get('/my-daily-budget/:monthly_goal_id', function($monthly_goal_id) use ($app) {
     $daily_budget_controller = new \shina\controlmybudget\controller\DailyBudgetController($app);
     $daily_budget_controller->myDailyBudgetAction($monthly_goal_id);
