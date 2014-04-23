@@ -26,7 +26,8 @@ class EmailImport extends Command {
             ->addArgument('port', InputArgument::REQUIRED)
             ->addArgument('login', InputArgument::REQUIRED)
             ->addArgument('password', InputArgument::REQUIRED)
-            ->addArgument('mailbox', InputArgument::REQUIRED);
+            ->addArgument('mailbox', InputArgument::REQUIRED)
+            ->addArgument('firsttime', InputArgument::OPTIONAL, '', false);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) {
@@ -41,7 +42,11 @@ class EmailImport extends Command {
         $purchase_service = new PurchaseService($data_provider);
 
         $importer = new MailImporterService($imap, $purchase_service);
-        $importer->import(50);
+        if ($params['firsttime']) {
+            $importer->firstImport();
+        } else {
+            $importer->import(3);
+        }
     }
 
 }
