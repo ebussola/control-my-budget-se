@@ -48,11 +48,11 @@ $app->get('/goals', function() use ($app) {
     $monthly_goal_controller->goalAction();
 });
 
-$app->get('/goals/:goal_id', function($monthly_goal_id) use ($app) {
+$app->get('/goal/:goal_id', function($monthly_goal_id) use ($app) {
     $monthly_goal_controller = new \shina\controlmybudget\controller\MonthlyGoalController($app);
     $monthly_goal_controller->getGoalAction($monthly_goal_id);
 });
-$app->post('/goals/:goal_id', function($monthly_goal_id) use ($app) {
+$app->post('/goal/:goal_id', function($monthly_goal_id) use ($app) {
     $monthly_goal_controller = new \shina\controlmybudget\controller\MonthlyGoalController($app);
     $monthly_goal_controller->editGoalAction($monthly_goal_id);
 });
@@ -61,8 +61,6 @@ $app->post('/goals', function() use ($app) {
     $monthly_goal_controller = new \shina\controlmybudget\controller\MonthlyGoalController($app);
     $monthly_goal_controller->addGoalAction();
 });
-
-//@todo make events api
 
 $app->get('/my-daily-budget/:monthly_goal_id', function($monthly_goal_id) use ($app) {
     $daily_budget_controller = new \shina\controlmybudget\controller\DailyBudgetController($app);
