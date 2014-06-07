@@ -11,7 +11,11 @@ namespace shina\controlmybudget\command;
 
 use Fetch\Server;
 use shina\controlmybudget\dataprovider\DoctrineDBAL;
-use shina\controlmybudget\MailImporterService;
+use shina\controlmybudget\ImporterService;
+use shina\controlmybudget\ImportHandler\MailItauCardImport;
+use shina\controlmybudget\ImportHandler\MailItauDebitImport;
+use shina\controlmybudget\ImportHandler\MailItauPaymentImport;
+use shina\controlmybudget\ImportHandler\MailItauWithdrawImport;
 use shina\controlmybudget\PurchaseService;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -41,9 +45,14 @@ class EmailImport extends Command {
         $data_provider = new DoctrineDBAL($conn);
         $purchase_service = new PurchaseService($data_provider);
 
-        $importer = new MailImporterService($imap, $purchase_service);
+        $importer = new ImporterService();
+        $importer->addImporter(new MailItauCardImport($imap, $purchase_service));
+        $importer->addImporter(new MailItauDebitImport($imap, $purchase_service));
+        $importer->addImporter(new MailItauPaymentImport($imap, $purchase_service));
+        $importer->addImporter(new MailItauWithdrawImport($imap, $purchase_service));
+
         if ($params['firsttime']) {
-            $importer->firstImport();
+            $importer->import(null);
         } else {
             $importer->import(3);
         }

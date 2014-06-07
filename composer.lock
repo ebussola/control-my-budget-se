@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "d762b692fe6c4391143f36b43990c840",
+    "hash": "51977a9cccbf5011248757e71a51ffe1",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -221,16 +221,16 @@
         },
         {
             "name": "doctrine/common",
-            "version": "v2.4.1",
+            "version": "v2.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/common.git",
-                "reference": "ceb18cf9b0230f3ea208b6238130fd415abda0a7"
+                "reference": "5db6ab40e4c531f14dad4ca96a394dfce5d4255b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/common/zipball/ceb18cf9b0230f3ea208b6238130fd415abda0a7",
-                "reference": "ceb18cf9b0230f3ea208b6238130fd415abda0a7",
+                "url": "https://api.github.com/repos/doctrine/common/zipball/5db6ab40e4c531f14dad4ca96a394dfce5d4255b",
+                "reference": "5db6ab40e4c531f14dad4ca96a394dfce5d4255b",
                 "shasum": ""
             },
             "require": {
@@ -240,6 +240,9 @@
                 "doctrine/inflector": "1.*",
                 "doctrine/lexer": "1.*",
                 "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~3.7"
             },
             "type": "library",
             "extra": {
@@ -292,7 +295,7 @@
                 "persistence",
                 "spl"
             ],
-            "time": "2013-09-07 10:20:34"
+            "time": "2014-05-21 19:28:51"
         },
         {
             "name": "doctrine/dbal",
@@ -537,6 +540,79 @@
             "time": "2014-03-16 19:02:43"
         },
         {
+            "name": "ebussola/common-capacity",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ebussola/common-capacity.git",
+                "reference": "b00843819cbc4520cdbb7fea664edd76c6315b02"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ebussola/common-capacity/zipball/b00843819cbc4520cdbb7fea664edd76c6315b02",
+                "reference": "b00843819cbc4520cdbb7fea664edd76c6315b02",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ebussola\\common\\capacity\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Leonardo Shinagawa",
+                    "email": "leonardo@ebussola.com"
+                }
+            ],
+            "time": "2014-04-19 20:49:24"
+        },
+        {
+            "name": "ebussola/common-datatype",
+            "version": "2.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ebussola/common-datatype.git",
+                "reference": "d58304c06d02db469755a62b2757babf49cebbdb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ebussola/common-datatype/zipball/d58304c06d02db469755a62b2757babf49cebbdb",
+                "reference": "d58304c06d02db469755a62b2757babf49cebbdb",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/inflector": "v1.0",
+                "ebussola/common-capacity": "~1.0",
+                "ext-bcmath": "*",
+                "ext-intl": "*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.34"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ebussola\\common\\datatype\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Leonardo Shinagawa",
+                    "email": "leonardo@ebussola.com"
+                }
+            ],
+            "time": "2014-05-19 16:33:29"
+        },
+        {
             "name": "ebussola/common-pool",
             "version": "1.0.0",
             "source": {
@@ -690,16 +766,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.9.0",
+            "version": "1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "1afc39690e7414412face1f8cbf67b73db34485c"
+                "reference": "25b16e801979098cb2f120e697bfce454b18bf23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/1afc39690e7414412face1f8cbf67b73db34485c",
-                "reference": "1afc39690e7414412face1f8cbf67b73db34485c",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/25b16e801979098cb2f120e697bfce454b18bf23",
+                "reference": "25b16e801979098cb2f120e697bfce454b18bf23",
                 "shasum": ""
             },
             "require": {
@@ -727,7 +803,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.9.x-dev"
+                    "dev-master": "1.10.x-dev"
                 }
             },
             "autoload": {
@@ -754,7 +830,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2014-04-20 16:41:26"
+            "time": "2014-06-04 16:30:04"
         },
         {
             "name": "mtdowling/cron-expression",
@@ -837,19 +913,20 @@
         },
         {
             "name": "shina/control-my-budget",
-            "version": "0.3.0",
+            "version": "0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/shina/control-my-budget.git",
-                "reference": "17535775f33051848a604c50cf15f60c6fe72751"
+                "reference": "bd66cc1c5032a85194a88c8d2ef8ebb52adeaeae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shina/control-my-budget/zipball/17535775f33051848a604c50cf15f60c6fe72751",
-                "reference": "17535775f33051848a604c50cf15f60c6fe72751",
+                "url": "https://api.github.com/repos/shina/control-my-budget/zipball/bd66cc1c5032a85194a88c8d2ef8ebb52adeaeae",
+                "reference": "bd66cc1c5032a85194a88c8d2ef8ebb52adeaeae",
                 "shasum": ""
             },
             "require": {
+                "ebussola/common-datatype": "~2.0",
                 "ebussola/goalr": "~1.0",
                 "tedivm/fetch": "~0.5"
             },
@@ -871,7 +948,7 @@
                 }
             ],
             "description": "Control My Budget",
-            "time": "2014-04-22 20:46:21"
+            "time": "2014-06-07 20:44:00"
         },
         {
             "name": "slim/slim",
@@ -921,32 +998,34 @@
         },
         {
             "name": "symfony/console",
-            "version": "v2.4.3",
+            "version": "v2.5.0",
             "target-dir": "Symfony/Component/Console",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console.git",
-                "reference": "ef20f1f58d7f693ee888353962bd2db336e3bbcb"
+                "reference": "ef4ca73b0b3a10cbac653d3ca482d0cdd4502b2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/ef20f1f58d7f693ee888353962bd2db336e3bbcb",
-                "reference": "ef20f1f58d7f693ee888353962bd2db336e3bbcb",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/ef4ca73b0b3a10cbac653d3ca482d0cdd4502b2c",
+                "reference": "ef4ca73b0b3a10cbac653d3ca482d0cdd4502b2c",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "require-dev": {
+                "psr/log": "~1.0",
                 "symfony/event-dispatcher": "~2.1"
             },
             "suggest": {
+                "psr/log": "For using the console logger",
                 "symfony/event-dispatcher": ""
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.4-dev"
+                    "dev-master": "2.5-dev"
                 }
             },
             "autoload": {
@@ -972,28 +1051,31 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "http://symfony.com",
-            "time": "2014-03-01 17:35:04"
+            "time": "2014-05-22 08:54:24"
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.4.3",
+            "version": "v2.5.0",
             "target-dir": "Symfony/Component/EventDispatcher",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/EventDispatcher.git",
-                "reference": "4708b8cd41984a5ba29fe7dd40716f7f761ac501"
+                "reference": "cb62ec8dd05893fc8e4f0e6e21e326e1fc731fe8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/4708b8cd41984a5ba29fe7dd40716f7f761ac501",
-                "reference": "4708b8cd41984a5ba29fe7dd40716f7f761ac501",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/cb62ec8dd05893fc8e4f0e6e21e326e1fc731fe8",
+                "reference": "cb62ec8dd05893fc8e4f0e6e21e326e1fc731fe8",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "symfony/dependency-injection": "~2.0"
+                "psr/log": "~1.0",
+                "symfony/config": "~2.0",
+                "symfony/dependency-injection": "~2.0",
+                "symfony/stopwatch": "~2.2"
             },
             "suggest": {
                 "symfony/dependency-injection": "",
@@ -1002,7 +1084,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.4-dev"
+                    "dev-master": "2.5-dev"
                 }
             },
             "autoload": {
@@ -1028,21 +1110,21 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "http://symfony.com",
-            "time": "2014-02-11 13:52:09"
+            "time": "2014-04-29 10:13:57"
         },
         {
             "name": "symfony/monolog-bridge",
-            "version": "v2.4.3",
+            "version": "v2.5.0",
             "target-dir": "Symfony/Bridge/Monolog",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/MonologBridge.git",
-                "reference": "041d2c9ead709bed730eda07882b62dba8233ba2"
+                "reference": "995c721c078186e968cd74bffdbbd03d25e1177e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/MonologBridge/zipball/041d2c9ead709bed730eda07882b62dba8233ba2",
-                "reference": "041d2c9ead709bed730eda07882b62dba8233ba2",
+                "url": "https://api.github.com/repos/symfony/MonologBridge/zipball/995c721c078186e968cd74bffdbbd03d25e1177e",
+                "reference": "995c721c078186e968cd74bffdbbd03d25e1177e",
                 "shasum": ""
             },
             "require": {
@@ -1062,7 +1144,7 @@
             "type": "symfony-bridge",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.4-dev"
+                    "dev-master": "2.5-dev"
                 }
             },
             "autoload": {
@@ -1088,21 +1170,21 @@
             ],
             "description": "Symfony Monolog Bridge",
             "homepage": "http://symfony.com",
-            "time": "2014-01-07 13:28:54"
+            "time": "2014-04-16 10:36:21"
         },
         {
             "name": "symfony/process",
-            "version": "v2.4.3",
+            "version": "v2.5.0",
             "target-dir": "Symfony/Component/Process",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Process.git",
-                "reference": "c09c3b08455c35688eee3e481fdfc85518ef01d7"
+                "reference": "5d7d78e23894544740219e006320678cfa4cd45b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Process/zipball/c09c3b08455c35688eee3e481fdfc85518ef01d7",
-                "reference": "c09c3b08455c35688eee3e481fdfc85518ef01d7",
+                "url": "https://api.github.com/repos/symfony/Process/zipball/5d7d78e23894544740219e006320678cfa4cd45b",
+                "reference": "5d7d78e23894544740219e006320678cfa4cd45b",
                 "shasum": ""
             },
             "require": {
@@ -1111,7 +1193,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.4-dev"
+                    "dev-master": "2.5-dev"
                 }
             },
             "autoload": {
@@ -1137,21 +1219,21 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "http://symfony.com",
-            "time": "2014-03-26 11:35:33"
+            "time": "2014-05-23 09:02:52"
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.4.3",
+            "version": "v2.5.0",
             "target-dir": "Symfony/Component/Yaml",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Yaml.git",
-                "reference": "77a41c2835ab7cfe8bf6d15e25d3af8f3eb3bacd"
+                "reference": "b4b09c68ec2f2727574544ef0173684281a5033c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/77a41c2835ab7cfe8bf6d15e25d3af8f3eb3bacd",
-                "reference": "77a41c2835ab7cfe8bf6d15e25d3af8f3eb3bacd",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/b4b09c68ec2f2727574544ef0173684281a5033c",
+                "reference": "b4b09c68ec2f2727574544ef0173684281a5033c",
                 "shasum": ""
             },
             "require": {
@@ -1160,7 +1242,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.4-dev"
+                    "dev-master": "2.5-dev"
                 }
             },
             "autoload": {
@@ -1186,7 +1268,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
-            "time": "2014-03-12 18:29:58"
+            "time": "2014-05-16 14:25:18"
         },
         {
             "name": "tedivm/fetch",
