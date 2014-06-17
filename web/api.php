@@ -66,5 +66,9 @@ $app->get('/my-daily-budget/:monthly_goal_id', function($monthly_goal_id) use ($
     $daily_budget_controller = new \shina\controlmybudget\controller\DailyBudgetController($app);
     $daily_budget_controller->myDailyBudgetAction($monthly_goal_id);
 });
+$app->get('/my-daily-budget/:monthly_goal_id/:spent_simulation', function($monthly_goal_id, $spent_simulation) use ($app) {
+    $daily_budget_controller = new \shina\controlmybudget\controller\DailyBudgetController($app);
+    $daily_budget_controller->myDailyBudgetAction($monthly_goal_id, $spent_simulation);
+});
 
 $app->run();
