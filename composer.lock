@@ -573,16 +573,16 @@
         },
         {
             "name": "ebussola/common-datatype",
-            "version": "2.1.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ebussola/common-datatype.git",
-                "reference": "cc840688b09e0b7aae07383b2c2089a3b606c3c6"
+                "reference": "f5e3ba6a55806256f296826e9daec3ea23f245b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ebussola/common-datatype/zipball/cc840688b09e0b7aae07383b2c2089a3b606c3c6",
-                "reference": "cc840688b09e0b7aae07383b2c2089a3b606c3c6",
+                "url": "https://api.github.com/repos/ebussola/common-datatype/zipball/f5e3ba6a55806256f296826e9daec3ea23f245b3",
+                "reference": "f5e3ba6a55806256f296826e9daec3ea23f245b3",
                 "shasum": ""
             },
             "require": {
@@ -610,7 +610,7 @@
                     "email": "leonardo@ebussola.com"
                 }
             ],
-            "time": "2014-06-11 19:34:01"
+            "time": "2014-06-27 12:35:27"
         },
         {
             "name": "ebussola/common-pool",
@@ -644,17 +644,20 @@
         },
         {
             "name": "ebussola/goalr",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ebussola/goalr.git",
-                "reference": "66310550e8ba247a708d037658cfed801ce29f47"
+                "reference": "4719e46f8637a63cf92026ccc47d2279a9b1d335"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ebussola/goalr/zipball/66310550e8ba247a708d037658cfed801ce29f47",
-                "reference": "66310550e8ba247a708d037658cfed801ce29f47",
+                "url": "https://api.github.com/repos/ebussola/goalr/zipball/4719e46f8637a63cf92026ccc47d2279a9b1d335",
+                "reference": "4719e46f8637a63cf92026ccc47d2279a9b1d335",
                 "shasum": ""
+            },
+            "require": {
+                "ebussola/common-datatype": "~2.1"
             },
             "require-dev": {
                 "phpunit/phpunit": "3.7.28"
@@ -673,7 +676,7 @@
                 }
             ],
             "description": "Daily Budget based on a total budget, a period and events",
-            "time": "2014-06-07 22:44:47"
+            "time": "2014-06-27 13:45:48"
         },
         {
             "name": "ebussola/job-schedule",
@@ -913,16 +916,16 @@
         },
         {
             "name": "shina/control-my-budget",
-            "version": "0.5.1",
+            "version": "0.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/shina/control-my-budget.git",
-                "reference": "19c1cc11e51ba41d5086c2886f739585fbe71749"
+                "reference": "329cf26c5325204c78840522e4bb38d8905bd8af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shina/control-my-budget/zipball/19c1cc11e51ba41d5086c2886f739585fbe71749",
-                "reference": "19c1cc11e51ba41d5086c2886f739585fbe71749",
+                "url": "https://api.github.com/repos/shina/control-my-budget/zipball/329cf26c5325204c78840522e4bb38d8905bd8af",
+                "reference": "329cf26c5325204c78840522e4bb38d8905bd8af",
                 "shasum": ""
             },
             "require": {
@@ -948,7 +951,7 @@
                 }
             ],
             "description": "Control My Budget",
-            "time": "2014-06-25 23:31:06"
+            "time": "2014-06-27 13:49:35"
         },
         {
             "name": "slim/slim",
