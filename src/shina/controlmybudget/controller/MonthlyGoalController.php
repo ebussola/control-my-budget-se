@@ -38,14 +38,24 @@ class MonthlyGoalController {
         $this->app->response->setBody($this->monthlyGoalsToJson($monthly_goals));
     }
 
+    public function allGoalsAction()
+    {
+        /** @var \shina\controlmybudget\MonthlyGoalService $monthly_goal_service */
+        $monthly_goal_service = $this->app->monthly_goal_service;
+        $monthly_goals = $monthly_goal_service->getAll();
+
+        $this->app->response->setBody($this->monthlyGoalsToJson($monthly_goals));
+    }
+
     public function addGoalAction() {
         $data = json_decode($this->app->request->post('monthly_goal'), true);
         /** @var \shina\controlmybudget\MonthlyGoalService $monthly_goal_service */
         $monthly_goal_service = $this->app->container->get('monthly_goal_service');
 
-        $monthly_goal = $this->createMonthlyGoal($data);
-
+        $monthly_goal = $this->fillMonthlyGoal(new MonthlyGoal(), $data);
         $monthly_goal_service->save($monthly_goal);
+
+        $this->app->response->setBody(json_encode($this->monthlyGoalToArray($monthly_goal)));
     }
 
     public function editGoalAction($monthly_goal_id) {
@@ -53,8 +63,8 @@ class MonthlyGoalController {
         /** @var \shina\controlmybudget\MonthlyGoalService $monthly_goal_service */
         $monthly_goal_service = $this->app->container->get('monthly_goal_service');
 
-        $monthly_goal = $this->createMonthlyGoal($data);
-        $monthly_goal->id = $monthly_goal_id;
+        $monthly_goal = $monthly_goal_service->getMonthlyGoalById($monthly_goal_id);
+        $monthly_goal = $this->fillMonthlyGoal($monthly_goal, $data);
 
         $monthly_goal_service->save($monthly_goal);
     }
@@ -84,25 +94,35 @@ class MonthlyGoalController {
      *
      * @return MonthlyGoal
      */
-    private function createMonthlyGoal($data) {
-        $monthly_goal = new MonthlyGoal();
-        $monthly_goal->month = $data['month'];
-        $monthly_goal->year = $data['year'];
-        $monthly_goal->amount_goal = $data['amount_goal'];
-        $monthly_goal->events = array();
+    private function fillMonthlyGoal(MonthlyGoal $monthly_goal, $data) {
+        if (isset($data['month'])) {
+            $monthly_goal->month = $data['month'];
+        }
 
-        foreach ($data['events'] as $event_data) {
-            $event = new Event();
-            if (isset($event_data['id'])) {
-                $event->id = $event_data['id'];
+        if (isset($data['year'])) {
+            $monthly_goal->year = $data['year'];
+        }
+
+        if (isset($data['amount_goal'])) {
+            $monthly_goal->amount_goal = $data['amount_goal'];
+        }
+
+        if (isset($data['events'])) {
+            $monthly_goal->events = array();
+
+            foreach ($data['events'] as $event_data) {
+                $event = new Event();
+                if (isset($event_data['id'])) {
+                    $event->id = $event_data['id'];
+                }
+                $event->name = $event_data['name'];
+                $event->date_start = new \DateTime($event_data['date_start']);
+                $event->date_end = new \DateTime($event_data['date_end']);
+                $event->variation = $event_data['variation'];
+                $event->category = $event_data['category'];
+
+                $monthly_goal->events[] = $event;
             }
-            $event->name = $event_data['name'];
-            $event->date_start = new \DateTime($event_data['date_start']);
-            $event->date_end = new \DateTime($event_data['date_end']);
-            $event->variation = $event_data['variation'];
-            $event->category = $event_data['category'];
-
-            $monthly_goal->events[] = $event;
         }
 
         return $monthly_goal;

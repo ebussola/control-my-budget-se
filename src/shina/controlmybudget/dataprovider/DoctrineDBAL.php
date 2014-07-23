@@ -255,4 +255,42 @@ class DoctrineDBAL implements DataProvider {
         return $monthly_goals_data;
     }
 
+    /**
+     * @param $purchase_id
+     * @return bool
+     */
+    public function deletePurchase($purchase_id)
+    {
+        return $this->conn->delete($this->_purchase_table_name, ['id' => $purchase_id]) > 0;
+    }
+
+    /**
+     * @return array
+     */
+    public function findAllMonthlyGoals($page = 1, $page_size = null)
+    {
+        $query = $this->conn->createQueryBuilder()
+            ->select($this->_monthly_goal_fields)
+            ->from($this->_monthly_goal_table_name, 'mg');
+
+        if ($page_size !== null) {
+            $query->setFirstResult(($page-1) * $page_size)
+                ->setMaxResults($page_size);
+        }
+
+        $data = $this->conn->executeQuery($query)->fetchAll();
+        $data = $this->fillWithEvents($data);
+
+        return $data;
+    }
+
+    /**
+     * @param int $monthly_goal_id
+     * @return bool
+     */
+    public function deleteMonthlyGoal($monthly_goal_id)
+    {
+        return $this->conn->delete($this->_monthly_goal_table_name, ['id' => $monthly_goal_id]) > 0;
+    }
+
 }
