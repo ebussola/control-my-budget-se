@@ -79,6 +79,19 @@ class MonthlyGoalController {
     }
 
     /**
+     * @param $monthly_goal_id
+     */
+    public function deleteGoalAction($monthly_goal_id)
+    {
+        /** @var \shina\controlmybudget\MonthlyGoalService $monthly_goal_service */
+        $monthly_goal_service = $this->app->container->get('monthly_goal_service');
+
+        if (!$monthly_goal_service->delete($monthly_goal_id)) {
+            $this->app->response->setStatus(400);
+        }
+    }
+
+    /**
      * @param $monthly_goals
      *
      * @return string

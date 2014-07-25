@@ -18,6 +18,7 @@
  *
  * @method get
  * @method post
+ * @method delete
  */
 class Slim_Framework_TestCase extends PHPUnit_Framework_TestCase
 {

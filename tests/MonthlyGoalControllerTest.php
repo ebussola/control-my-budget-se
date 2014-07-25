@@ -133,4 +133,29 @@ class MonthlyGoalControllerTest extends Slim_Framework_TestCase
         $this->assertObjectHasAttribute('id', $data);
     }
 
+    public function testDeleteGoal_Invalid()
+    {
+        $this->delete('/goal/69');
+
+        $this->assertEquals(400, $this->response->getStatus());
+    }
+
+    public function testDeleteGoal()
+    {
+        /** @var \shina\controlmybudget\MonthlyGoalService $monthly_goal_service */
+        $monthly_goal_service = $this->app->monthly_goal_service;
+
+        $monthly_goal = new \shina\controlmybudget\MonthlyGoal\MonthlyGoal();
+        $monthly_goal->month = 8;
+        $monthly_goal->year = 2014;
+        $monthly_goal->amount_goal = 2000;
+        $monthly_goal->events = [];
+        $monthly_goal_service->save($monthly_goal);
+
+        $this->delete('/goal/'.$monthly_goal->id);
+
+        $this->assertEquals(200, $this->response->getStatus());
+        $this->assertCount(0, $monthly_goal_service->getAll());
+    }
+
 }

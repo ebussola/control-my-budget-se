@@ -47,6 +47,13 @@ $app->post(
     }
 );
 
+$app->delete(
+    '/goal/:monthly_goal_id',
+    function ($monthly_goal_id) use ($app) {
+        $monthly_goal_controller = new \shina\controlmybudget\controller\MonthlyGoalController($app);
+        $monthly_goal_controller->deleteGoalAction($monthly_goal_id);
+    }
+);
 
 
 $app->get(
