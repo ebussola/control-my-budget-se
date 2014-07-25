@@ -205,11 +205,30 @@ class DoctrineDBAL implements DataProvider {
     }
 
     /**
-     * @param Event[] $events
+     * @param array $events
      * @param int     $monthly_goal_id
      */
-    private function saveEvents($events, $monthly_goal_id) {
-        foreach ($events as $event_data) {
+    private function saveEvents($events_data, $monthly_goal_id) {
+        $query = $this->conn->createQueryBuilder();
+        $query->select($this->_event_fields)
+            ->from($this->_event_table_name, 'e')
+            ->where('e.monthly_goal_id = ?');
+        $events_data2 = $this->conn->executeQuery($query, [$monthly_goal_id])->fetchAll();
+
+        $deleted_events = array_udiff($events_data2, $events_data,
+            function ($a, $b) {
+                if ($a['id'] == $b['id']) {
+                    return 0;
+                }
+
+                return 1;
+            }
+        );
+        foreach ($deleted_events as $deleted_event) {
+            $this->conn->delete($this->_event_table_name, ['id' => $deleted_event['id']]);
+        }
+
+        foreach ($events_data as $event_data) {
             $event_data['monthly_goal_id'] = $monthly_goal_id;
             if ($event_data['id'] == null) {
                 $this->conn->insert('event', $event_data);

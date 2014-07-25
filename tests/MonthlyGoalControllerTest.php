@@ -89,11 +89,18 @@ class MonthlyGoalControllerTest extends Slim_Framework_TestCase
         /** @var \shina\controlmybudget\MonthlyGoalService $monthly_goal_service */
         $monthly_goal_service = $this->app->monthly_goal_service;
 
+        $event = new \ebussola\goalr\event\Event();
+        $event->name = 'Test';
+        $event->date_start = new \ebussola\common\datatype\datetime\Date('2014-08-18');
+        $event->date_end = new \ebussola\common\datatype\datetime\Date('2014-08-20');
+        $event->category = 'bithday';
+        $event->variation = 200;
+
         $monthly_goal = new \shina\controlmybudget\MonthlyGoal\MonthlyGoal();
         $monthly_goal->month = 8;
         $monthly_goal->year = 2014;
         $monthly_goal->amount_goal = 2000;
-        $monthly_goal->events = [];
+        $monthly_goal->events = [$event];
         $monthly_goal_service->save($monthly_goal);
 
         $this->post(
@@ -113,6 +120,41 @@ class MonthlyGoalControllerTest extends Slim_Framework_TestCase
         $this->assertEquals(9, $monthly_goal->month);
         $this->assertEquals(2013, $monthly_goal->year);
         $this->assertEquals(1234, $monthly_goal->amount_goal);
+        $this->assertCount(1, $monthly_goal->events);
+    }
+
+    public function testEditGoal_RemoveEvent()
+    {
+        /** @var \shina\controlmybudget\MonthlyGoalService $monthly_goal_service */
+        $monthly_goal_service = $this->app->monthly_goal_service;
+
+        $event = new \ebussola\goalr\event\Event();
+        $event->name = 'Test';
+        $event->date_start = new \ebussola\common\datatype\datetime\Date('2014-08-18');
+        $event->date_end = new \ebussola\common\datatype\datetime\Date('2014-08-20');
+        $event->category = 'bithday';
+        $event->variation = 200;
+
+        $monthly_goal = new \shina\controlmybudget\MonthlyGoal\MonthlyGoal();
+        $monthly_goal->month = 8;
+        $monthly_goal->year = 2014;
+        $monthly_goal->amount_goal = 2000;
+        $monthly_goal->events = [$event];
+        $monthly_goal_service->save($monthly_goal);
+
+        $this->post(
+            '/goal/' . $monthly_goal->id,
+            [
+                'monthly_goal' => json_encode(
+                    [
+                        'events' => []
+                    ]
+                )
+            ]
+        );
+
+        $monthly_goal = $monthly_goal_service->getMonthlyGoalById($monthly_goal->id);
+        $this->assertCount(0, $monthly_goal->events);
     }
 
     public function testAddGoal()
