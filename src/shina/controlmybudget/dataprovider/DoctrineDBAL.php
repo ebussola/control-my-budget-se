@@ -155,7 +155,8 @@ class DoctrineDBAL implements DataProvider {
             ->select($this->_monthly_goal_fields)
             ->from($this->_monthly_goal_table_name, 'mg')
             ->where('mg.month = ?')
-            ->andWhere('mg.year = ?');
+            ->andWhere('mg.year = ?')
+            ->andWhere('mg.is_deleted = 0');
         $monthly_goals_data = $this->conn->executeQuery($query, array(
             $month, $year
         ))->fetchAll();
@@ -193,7 +194,8 @@ class DoctrineDBAL implements DataProvider {
         $query = $this->conn->createQueryBuilder()
             ->select($this->_monthly_goal_fields)
             ->from($this->_monthly_goal_table_name, 'mg')
-            ->where('mg.id IN (?)');
+            ->where('mg.id IN (?)')
+            ->andWhere('mg.is_deleted = 0');
         $monthly_goals_data = $this->conn->executeQuery($query, array(
             $monthly_goal_ids
         ), array(
@@ -290,7 +292,8 @@ class DoctrineDBAL implements DataProvider {
     {
         $query = $this->conn->createQueryBuilder()
             ->select($this->_monthly_goal_fields)
-            ->from($this->_monthly_goal_table_name, 'mg');
+            ->from($this->_monthly_goal_table_name, 'mg')
+            ->where('mg.is_deleted = 0');
 
         if ($page_size !== null) {
             $query->setFirstResult(($page-1) * $page_size)
@@ -309,7 +312,7 @@ class DoctrineDBAL implements DataProvider {
      */
     public function deleteMonthlyGoal($monthly_goal_id)
     {
-        return $this->conn->delete($this->_monthly_goal_table_name, ['id' => $monthly_goal_id]) > 0;
+        return $this->conn->update($this->_monthly_goal_table_name, ['is_deleted' => true], ['id' => $monthly_goal_id]) > 0;
     }
 
 }
