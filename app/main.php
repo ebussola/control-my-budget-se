@@ -6,6 +6,8 @@
  * Time: 16:28
  */
 
+use ebussola\common\datatype\datetime\Date;
+
 $app->response->headers->set('Access-Control-Allow-Origin', '*');
 
 $app->get(
@@ -68,5 +70,30 @@ $app->get(
     function ($monthly_goal_id, $spent_simulation) use ($app) {
         $daily_budget_controller = new \shina\controlmybudget\controller\DailyBudgetController($app);
         $daily_budget_controller->myDailyBudgetAction($monthly_goal_id, $spent_simulation);
+    }
+);
+
+
+$app->get(
+    '/purchases/:date_start/:date_end',
+    function ($date_start, $date_end) use ($app) {
+        $purchase_controller = new \shina\controlmybudget\controller\PurchaseController($app);
+        $purchase_controller->listByPeriod(new Date($date_start), new Date($date_end));
+    }
+);
+
+$app->post(
+    '/purchases',
+    function () use ($app) {
+        $purchase_controller = new \shina\controlmybudget\controller\PurchaseController($app);
+        $purchase_controller->addPurchase();
+    }
+);
+
+$app->delete(
+    '/purchase/:purchase_id',
+    function ($purchase_id) use ($app) {
+        $purchase_controller = new \shina\controlmybudget\controller\PurchaseController($app);
+        $purchase_controller->deletePurchase($purchase_id);
     }
 );
