@@ -47,9 +47,7 @@ class PurchaseController
             $data = json_decode(file_get_contents('php://input'), true);
         }
         $purchase = new \shina\controlmybudget\Purchase\Purchase();
-        $purchase->date = new Date($data['date']);
-        $purchase->amount = $data['amount'];
-        $purchase->place = $data['place'];
+        $this->fillPurchase($purchase, $data);
 
         $purchase_service->save($purchase);
 
@@ -64,6 +62,22 @@ class PurchaseController
         if (!$purchase_service->delete($purchase_id)) {
             $this->app->response->setStatus(400);
         }
+    }
+
+    public function editPurchase($purchase_id)
+    {
+        /** @var \shina\controlmybudget\PurchaseService $purchase_service */
+        $purchase_service = $this->app->purchase_service;
+        $purchase = $purchase_service->getById($purchase_id);
+        if ($this->app->request->post()) {
+            $data = json_decode($this->app->request->post('purchase'), true);
+        } else {
+            $data = json_decode(file_get_contents('php://input'), true);
+        }
+
+        $this->fillPurchase($purchase, $data);
+
+        $purchase_service->save($purchase);
     }
 
     protected function allToArray($purchases)
@@ -82,6 +96,21 @@ class PurchaseController
         $arr['date'] = $purchase->date->format('Y-m-d');
 
         return $arr;
+    }
+
+    private function fillPurchase(Purchase &$purchase, $data)
+    {
+        if (isset($data['date'])) {
+            $purchase->date = new Date($data['date']);
+        }
+
+        if (isset($data['place'])) {
+            $purchase->place = $data['place'];
+        }
+
+        if (isset($data['amount'])) {
+            $purchase->amount = $data['amount'];
+        }
     }
 
 } 

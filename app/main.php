@@ -97,3 +97,11 @@ $app->delete(
         $purchase_controller->deletePurchase($purchase_id);
     }
 );
+
+$app->post(
+    '/purchase/:purchase_id',
+    function ($purchase_id) use ($app) {
+        $purchase_controller = new \shina\controlmybudget\controller\PurchaseController($app);
+        $purchase_controller->editPurchase($purchase_id);
+    }
+);

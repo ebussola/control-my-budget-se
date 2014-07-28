@@ -81,9 +81,35 @@ class PurchaseControllerTest extends Slim_Framework_TestCase
         $purchase->place = 'Somewhere';
         $purchase_service->save($purchase);
 
-        $this->delete('/purchase/'.$purchase->id);
+        $this->delete('/purchase/' . $purchase->id);
 
         $this->assertEquals(200, $this->app->response->getStatus());
+    }
+
+    public function testEditPurchase()
+    {
+        /** @var \shina\controlmybudget\PurchaseService $purchase_service */
+        $purchase_service = $this->app->purchase_service;
+
+        $purchase = new \shina\controlmybudget\Purchase\Purchase();
+        $purchase->date = new \ebussola\common\datatype\datetime\Date('2014-07-05');
+        $purchase->amount = 350.80;
+        $purchase->place = 'Somewhere';
+        $purchase_service->save($purchase);
+
+        $this->post(
+            '/purchase/' . $purchase->id,
+            [
+                'purchase' => json_encode(
+                    [
+                        'amount' => 3000
+                    ]
+                )
+            ]
+        );
+
+        $purchase = $purchase_service->getById($purchase->id);
+        $this->assertEquals(3000, $purchase->amount);
     }
 
     /**

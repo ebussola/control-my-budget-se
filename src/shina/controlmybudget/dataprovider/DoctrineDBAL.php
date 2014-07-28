@@ -112,6 +112,22 @@ class DoctrineDBAL implements DataProvider {
     }
 
     /**
+     * @param int $purchase_id
+     * @return array
+     */
+    public function findPurchaseById($purchase_id)
+    {
+        $query = $this->conn->createQueryBuilder()
+            ->select($this->_purchase_fields)
+            ->from($this->_purchase_table_name, 'p')
+            ->where('id = ?');
+
+        $data = $this->conn->executeQuery($query, [$purchase_id])->fetch();
+
+        return $data;
+    }
+
+    /**
      * @param array $data
      *
      * @return int

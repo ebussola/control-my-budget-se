@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f3b8caeffa41bf90ffd3a1908e08998c",
+    "hash": "d502654b6ad1d8707ee6966a06906ad2",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -918,16 +918,16 @@
         },
         {
             "name": "shina/control-my-budget",
-            "version": "0.6.0",
+            "version": "0.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/shina/control-my-budget.git",
-                "reference": "a29e7e5d4a663913ed86fca48a742698b6a1c9b8"
+                "reference": "b348f10872575d9aefdc03d352f2c04b1dfa32cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shina/control-my-budget/zipball/a29e7e5d4a663913ed86fca48a742698b6a1c9b8",
-                "reference": "a29e7e5d4a663913ed86fca48a742698b6a1c9b8",
+                "url": "https://api.github.com/repos/shina/control-my-budget/zipball/b348f10872575d9aefdc03d352f2c04b1dfa32cc",
+                "reference": "b348f10872575d9aefdc03d352f2c04b1dfa32cc",
                 "shasum": ""
             },
             "require": {
@@ -953,7 +953,7 @@
                 }
             ],
             "description": "Control My Budget",
-            "time": "2014-07-22 18:33:21"
+            "time": "2014-07-28 21:42:55"
         },
         {
             "name": "slim/slim",
