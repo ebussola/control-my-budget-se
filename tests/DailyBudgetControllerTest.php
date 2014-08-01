@@ -21,7 +21,7 @@ class DailyBudgetControllerTest extends Slim_Framework_TestCase
         $this->get('/my-daily-budget/'.$monthly_goal->id);
 
         $this->assertEquals(200, $this->response->getStatus());
-        $this->assertTrue($this->response->getBody() >= (2000/30));
+        $this->assertTrue($this->response->getBody() >= (floor(2000/date('t'))));
     }
 
     public function testDailyBudgetSpentSimulation()

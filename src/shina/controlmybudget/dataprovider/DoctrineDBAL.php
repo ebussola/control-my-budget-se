@@ -184,15 +184,21 @@ class DoctrineDBAL implements DataProvider {
     /**
      * @param \DateTime $date_start
      * @param \DateTime $date_end
+     * @param boolean   $only_forecast
      *
      * @return float
      */
-    public function calcAmountByPeriod(\DateTime $date_start, \DateTime $date_end) {
+    public function calcAmountByPeriod(\DateTime $date_start, \DateTime $date_end, $only_forecast=false) {
         $query = $this->conn->createQueryBuilder()
             ->select(array('SUM(p.amount) as count_amount'))
             ->from($this->_purchase_table_name, 'p')
             ->where('p.date >= ?')
             ->andWhere('p.date <= ?');
+
+        if ($only_forecast) {
+            $query->andWhere('is_forecast = 1');
+        }
+
         $data = $this->conn->executeQuery($query, array(
             $date_start->format('Y-m-d'),
             $date_end->format('Y-m-d')
