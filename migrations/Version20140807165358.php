@@ -24,7 +24,7 @@ class Version20140807165358 extends AbstractMigration
                 'id' => 1,
                 'email' => 'leonardo@ebussola.com',
                 'name' => 'Leonardo Shinagawa',
-                'facebook_user_id' => '653238442'
+                'facebook_user_id' => '10152291353438443'
             ]
         );
     }
