@@ -18,19 +18,19 @@ class PurchaseControllerTest extends Slim_Framework_TestCase
         $purchase1->date = new \ebussola\common\datatype\datetime\Date('2014-07-05');
         $purchase1->amount = 350.80;
         $purchase1->place = 'Somewhere';
-        $purchase_service->save($purchase1);
+        $purchase_service->save($purchase1, $this->user);
 
         $purchase2 = new \shina\controlmybudget\Purchase\Purchase();
         $purchase2->date = new \ebussola\common\datatype\datetime\Date('2014-07-21');
         $purchase2->amount = 200;
         $purchase2->place = 'Somewhere 2';
-        $purchase_service->save($purchase2);
+        $purchase_service->save($purchase2, $this->user);
 
         $purchase3 = new \shina\controlmybudget\Purchase\Purchase();
         $purchase3->date = new \ebussola\common\datatype\datetime\Date('2014-07-25');
         $purchase3->amount = 55.50;
         $purchase3->place = 'Somewhere 3';
-        $purchase_service->save($purchase3);
+        $purchase_service->save($purchase3, $this->user);
 
         $this->get('/purchases/2014-07-01/2014-07-31');
 
@@ -79,7 +79,7 @@ class PurchaseControllerTest extends Slim_Framework_TestCase
         $purchase->date = new \ebussola\common\datatype\datetime\Date('2014-07-05');
         $purchase->amount = 350.80;
         $purchase->place = 'Somewhere';
-        $purchase_service->save($purchase);
+        $purchase_service->save($purchase, $this->user);
 
         $this->delete('/purchase/' . $purchase->id);
 
@@ -95,7 +95,7 @@ class PurchaseControllerTest extends Slim_Framework_TestCase
         $purchase->date = new \ebussola\common\datatype\datetime\Date('2014-07-05');
         $purchase->amount = 350.80;
         $purchase->place = 'Somewhere';
-        $purchase_service->save($purchase);
+        $purchase_service->save($purchase, $this->user);
 
         $this->post(
             '/purchase/' . $purchase->id,

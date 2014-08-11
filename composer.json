@@ -13,13 +13,14 @@
     },
 
     "require": {
-        "shina/control-my-budget": "~0.8",
+        "shina/control-my-budget": "~0.9",
         "doctrine/dbal": "~2.4",
         "symfony/console": "~2.4",
         "doctrine/migrations": "1.0.*@dev",
         "symfony/yaml": "~2.4",
         "ebussola/job-schedule-se": "~0.12",
-        "slim/slim": "~2.4"
+        "slim/slim": "~2.4",
+        "guzzle/guzzle": "~3.9"
     },
 
     "require-dev": {

@@ -10,6 +10,17 @@ use ebussola\common\datatype\datetime\Date;
 
 $app->response->headers->set('Access-Control-Allow-Origin', '*');
 
+$app->error(
+    function ($exception) use ($app) {
+        $app->response->setStatus(500);
+        $error_controller = new \shina\controlmybudget\controller\ErrorController($app);
+
+        if ($exception instanceof \shina\controlmybudget\exceptions\InvalidAccessToken) {
+            $error_controller->invalidToken();
+        }
+    }
+);
+
 $app->get(
     '/goals/:month/:year',
     function ($month, $year) use ($app) {

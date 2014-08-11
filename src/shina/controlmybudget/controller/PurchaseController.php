@@ -11,27 +11,16 @@ namespace shina\controlmybudget\controller;
 
 use ebussola\common\datatype\datetime\Date;
 use shina\controlmybudget\Purchase;
-use Slim\Slim;
 
-class PurchaseController
+class PurchaseController extends AbstractOAuthController
 {
-
-    /**
-     * @var Slim
-     */
-    protected $app;
-
-    public function __construct(Slim $app)
-    {
-        $this->app = $app;
-    }
 
     public function listByPeriod(Date $date_start, Date $date_end)
     {
         /** @var \shina\controlmybudget\PurchaseService $purchase_service */
         $purchase_service = $this->app->purchase_service;
 
-        $purchases = $purchase_service->getPurchasesByPeriod($date_start, $date_end);
+        $purchases = $purchase_service->getPurchasesByPeriod($date_start, $date_end, $this->user);
 
         $this->app->response->setBody(json_encode($this->allToArray($purchases)));
     }
@@ -49,7 +38,7 @@ class PurchaseController
         $purchase = new \shina\controlmybudget\Purchase\Purchase();
         $this->fillPurchase($purchase, $data);
 
-        $purchase_service->save($purchase);
+        $purchase_service->save($purchase, $this->user);
 
         $this->app->response->setBody(json_encode($this->toArray($purchase)));
     }
@@ -77,7 +66,7 @@ class PurchaseController
 
         $this->fillPurchase($purchase, $data);
 
-        $purchase_service->save($purchase);
+        $purchase_service->save($purchase, $this->user);
     }
 
     protected function allToArray($purchases)

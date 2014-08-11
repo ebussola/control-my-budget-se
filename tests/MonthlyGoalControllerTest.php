@@ -16,7 +16,7 @@ class MonthlyGoalControllerTest extends Slim_Framework_TestCase
         $monthly_goal->year = 2014;
         $monthly_goal->amount_goal = 2000;
         $monthly_goal->events = [];
-        $this->app->monthly_goal_service->save($monthly_goal);
+        $this->app->monthly_goal_service->save($monthly_goal, $this->user);
 
         $this->get('/goals/8/2014');
 
@@ -43,21 +43,21 @@ class MonthlyGoalControllerTest extends Slim_Framework_TestCase
         $monthly_goal->year = 2014;
         $monthly_goal->amount_goal = 1000;
         $monthly_goal->events = [];
-        $this->app->monthly_goal_service->save($monthly_goal);
+        $this->app->monthly_goal_service->save($monthly_goal, $this->user);
 
         $monthly_goal = new \shina\controlmybudget\MonthlyGoal\MonthlyGoal();
         $monthly_goal->month = 8;
         $monthly_goal->year = 2014;
         $monthly_goal->amount_goal = 2000;
         $monthly_goal->events = [];
-        $this->app->monthly_goal_service->save($monthly_goal);
+        $this->app->monthly_goal_service->save($monthly_goal, $this->user);
 
         $monthly_goal = new \shina\controlmybudget\MonthlyGoal\MonthlyGoal();
         $monthly_goal->month = 8;
         $monthly_goal->year = 2014;
         $monthly_goal->amount_goal = 3000;
         $monthly_goal->events = [];
-        $this->app->monthly_goal_service->save($monthly_goal);
+        $this->app->monthly_goal_service->save($monthly_goal, $this->user);
 
         $this->get('/goals');
 
@@ -73,7 +73,7 @@ class MonthlyGoalControllerTest extends Slim_Framework_TestCase
         $monthly_goal->year = 2014;
         $monthly_goal->amount_goal = 2000;
         $monthly_goal->events = [];
-        $this->app->monthly_goal_service->save($monthly_goal);
+        $this->app->monthly_goal_service->save($monthly_goal, $this->user);
 
         $this->get('/goal/' . $monthly_goal->id);
 
@@ -101,7 +101,7 @@ class MonthlyGoalControllerTest extends Slim_Framework_TestCase
         $monthly_goal->year = 2014;
         $monthly_goal->amount_goal = 2000;
         $monthly_goal->events = [$event];
-        $monthly_goal_service->save($monthly_goal);
+        $monthly_goal_service->save($monthly_goal, $this->user);
 
         $this->post(
             '/goal/' . $monthly_goal->id,
@@ -147,7 +147,7 @@ class MonthlyGoalControllerTest extends Slim_Framework_TestCase
         $monthly_goal->year = 2014;
         $monthly_goal->amount_goal = 2000;
         $monthly_goal->events = [$event1, $event2];
-        $monthly_goal_service->save($monthly_goal);
+        $monthly_goal_service->save($monthly_goal, $this->user);
 
         $monthly_goal = $monthly_goal_service->getMonthlyGoalById($monthly_goal->id);
         $this->post(
@@ -209,12 +209,12 @@ class MonthlyGoalControllerTest extends Slim_Framework_TestCase
         $monthly_goal->year = 2014;
         $monthly_goal->amount_goal = 2000;
         $monthly_goal->events = [];
-        $monthly_goal_service->save($monthly_goal);
+        $monthly_goal_service->save($monthly_goal, $this->user);
 
         $this->delete('/goal/'.$monthly_goal->id);
 
         $this->assertEquals(200, $this->response->getStatus());
-        $this->assertCount(0, $monthly_goal_service->getAll());
+        $this->assertCount(0, $monthly_goal_service->getAll($this->user));
     }
 
 }

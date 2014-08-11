@@ -10,18 +10,8 @@ namespace shina\controlmybudget\controller;
 
 use ebussola\goalr\event\Event;
 use shina\controlmybudget\MonthlyGoal\MonthlyGoal;
-use Slim\Slim;
 
-class MonthlyGoalController {
-
-    /**
-     * @var Slim
-     */
-    private $app;
-
-    public function __construct(Slim $app) {
-        $this->app = $app;
-    }
+class MonthlyGoalController extends AbstractOAuthController {
 
     public function goalAction($month=null, $year=null) {
         if ($month === null) {
@@ -33,7 +23,7 @@ class MonthlyGoalController {
 
         /** @var \shina\controlmybudget\MonthlyGoalService $monthly_goal_service */
         $monthly_goal_service = $this->app->container->get('monthly_goal_service');
-        $monthly_goals = $monthly_goal_service->getMonthlyGoalByMonthAndYear($month, $year);
+        $monthly_goals = $monthly_goal_service->getMonthlyGoalByMonthAndYear($month, $year, $this->user);
 
         $this->app->response->setBody($this->monthlyGoalsToJson($monthly_goals));
     }
@@ -42,7 +32,7 @@ class MonthlyGoalController {
     {
         /** @var \shina\controlmybudget\MonthlyGoalService $monthly_goal_service */
         $monthly_goal_service = $this->app->monthly_goal_service;
-        $monthly_goals = $monthly_goal_service->getAll();
+        $monthly_goals = $monthly_goal_service->getAll($this->user);
 
         $this->app->response->setBody($this->monthlyGoalsToJson($monthly_goals));
     }
@@ -53,7 +43,7 @@ class MonthlyGoalController {
         $monthly_goal_service = $this->app->container->get('monthly_goal_service');
 
         $monthly_goal = $this->fillMonthlyGoal(new MonthlyGoal(), $data);
-        $monthly_goal_service->save($monthly_goal);
+        $monthly_goal_service->save($monthly_goal, $this->user);
 
         $this->app->response->setBody(json_encode($this->monthlyGoalToArray($monthly_goal)));
     }
@@ -66,7 +56,7 @@ class MonthlyGoalController {
         $monthly_goal = $monthly_goal_service->getMonthlyGoalById($monthly_goal_id);
         $monthly_goal = $this->fillMonthlyGoal($monthly_goal, $data);
 
-        $monthly_goal_service->save($monthly_goal);
+        $monthly_goal_service->save($monthly_goal, $this->user);
     }
 
     public function getGoalAction($monthly_goal_id) {

@@ -42,6 +42,11 @@ class Slim_Framework_TestCase extends PHPUnit_Framework_TestCase
      */
     protected $response;
 
+    /**
+     * @var \shina\controlmybudget\User
+     */
+    protected $user;
+
     // Run for each unit test to setup our slim app environment
     public function setup()
     {
@@ -76,8 +81,20 @@ class Slim_Framework_TestCase extends PHPUnit_Framework_TestCase
         $input->setInteractive(false);
         $cli->find('migrations:migrate')->run($input, new \Symfony\Component\Console\Output\NullOutput());
 
+        $this->user = $app->user_service->getById(1);
+
         // Include our core application file
         require __DIR__ . '/../app/main.php';
+
+        $mock_plugin = new \Guzzle\Plugin\Mock\MockPlugin();
+        $mock_plugin->addResponse(
+            new \Guzzle\Http\Message\Response(200, [], json_encode(
+                    [
+                        'id' => $this->user->facebook_user_id
+                    ]
+                )
+            ));
+        $app->http->addSubscriber($mock_plugin);
 
         // Establish a local reference to the Slim app object
         $this->app = $app;
@@ -90,6 +107,8 @@ class Slim_Framework_TestCase extends PHPUnit_Framework_TestCase
         // Capture STDOUT
         ob_start();
 
+        $formVars = array_merge(['access_token' => '111'], $formVars);
+
         // Prepare a mock environment
         \Slim\Environment::mock(
             array_merge(
@@ -97,7 +116,8 @@ class Slim_Framework_TestCase extends PHPUnit_Framework_TestCase
                     'REQUEST_METHOD' => strtoupper($method),
                     'PATH_INFO' => $path,
                     'SERVER_NAME' => 'local.dev',
-                    'slim.input' => http_build_query($formVars)
+                    'slim.input' => http_build_query($formVars),
+                    'QUERY_STRING' => http_build_query($formVars)
                 ),
                 $optionalHeaders
             )

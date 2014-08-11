@@ -53,3 +53,19 @@ $app->container->singleton(
         return new \shina\controlmybudget\BudgetControlService($purchase_service, $goalr);
     }
 );
+
+$app->container->singleton(
+    'http',
+    function () {
+        return new \Guzzle\Http\Client();
+    }
+);
+
+$app->container->singleton(
+    'user_service',
+    function () use ($app) {
+        $user_service = new \shina\controlmybudget\UserService($app->data_provider, $app->http);
+
+        return $user_service;
+    }
+);
