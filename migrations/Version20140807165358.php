@@ -18,16 +18,13 @@ class Version20140807165358 extends AbstractMigration
         $purchase_table = $schema->getTable('purchase');
         $purchase_table->addColumn('user_id', 'integer', ['default' => 1]);
 
-        $access_token = serialize(['access_token' => '111', 'expires' => time() + 86400]);
         $this->connection->insert(
             'user',
             [
                 'id' => 1,
                 'email' => 'leonardo@ebussola.com',
                 'name' => 'Leonardo Shinagawa',
-                'facebook_user_id' => '653238442',
-                'facebook_access_token' => $access_token,
-                'access_token' => '111'
+                'facebook_user_id' => '653238442'
             ]
         );
     }

@@ -17,9 +17,7 @@ class Version20140807162026 extends AbstractMigration
         $user_table->addColumn('email', 'string');
         $user_table->addColumn('name', 'string');
         $user_table->addColumn('facebook_user_id', 'string');
-        $user_table->addColumn('facebook_access_token', 'string');
-        $user_table->addColumn('access_token', 'string');
-        $user_table->addIndex(['access_token']);
+        $user_table->addIndex(['facebook_user_id']);
         $user_table->setPrimaryKey(['id']);
         $user_table->addUniqueIndex(['facebook_user_id', 'email']);
     }

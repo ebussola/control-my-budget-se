@@ -27,7 +27,7 @@ class DoctrineDBAL implements DataProvider {
         'e.variation', 'e.category');
 
     protected $_user_table_name = 'user';
-    protected $_user_fields = array('u.id', 'u.email', 'u.name', 'u.facebook_user_id', 'u.facebook_access_token');
+    protected $_user_fields = array('u.id', 'u.email', 'u.name', 'u.facebook_user_id');
 
     /**
      * @var Connection
@@ -365,17 +365,17 @@ class DoctrineDBAL implements DataProvider {
     }
 
     /**
-     * @param string $access_token
+     * @param string $facebook_user_id
      * @return array
      */
-    public function findUserByAccessToken($access_token)
+    public function findUserByFacebookId($facebook_user_id)
     {
         $query = $this->conn->createQueryBuilder();
         $query->select($this->_user_fields)
             ->from($this->_user_table_name, 'u')
-            ->where('u.access_token = :access_token');
+            ->where('u.facebook_user_id = :facebook_user_id');
 
-        return $this->conn->executeQuery($query, ['access_token' => $access_token])->fetch();
+        return $this->conn->executeQuery($query, ['facebook_user_id' => $facebook_user_id])->fetch();
     }
 
     /**

@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "82af60bc68ba07829fd5c8890b71eaca",
+    "hash": "16a6475f3c3c113cf8d5142b12abbd47",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -771,16 +771,16 @@
         },
         {
             "name": "guzzle/guzzle",
-            "version": "v3.9.1",
+            "version": "v3.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle3.git",
-                "reference": "92d9934f2fca1da15178c91239576ae26e505e60"
+                "reference": "54991459675c1a2924122afbb0e5609ade581155"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/92d9934f2fca1da15178c91239576ae26e505e60",
-                "reference": "92d9934f2fca1da15178c91239576ae26e505e60",
+                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/54991459675c1a2924122afbb0e5609ade581155",
+                "reference": "54991459675c1a2924122afbb0e5609ade581155",
                 "shasum": ""
             },
             "require": {
@@ -824,7 +824,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.8-dev"
+                    "dev-master": "3.9-dev"
                 }
             },
             "autoload": {
@@ -859,7 +859,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2014-05-07 17:04:22"
+            "time": "2014-08-11 04:32:36"
         },
         {
             "name": "monolog/monolog",
@@ -1010,16 +1010,16 @@
         },
         {
             "name": "shina/control-my-budget",
-            "version": "0.9.1",
+            "version": "0.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/shina/control-my-budget.git",
-                "reference": "9fd0838f236dba66e5523f537562f65a9c15846a"
+                "reference": "b5f7b6d5e6df044da38695f652a46e4ee5350466"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shina/control-my-budget/zipball/9fd0838f236dba66e5523f537562f65a9c15846a",
-                "reference": "9fd0838f236dba66e5523f537562f65a9c15846a",
+                "url": "https://api.github.com/repos/shina/control-my-budget/zipball/b5f7b6d5e6df044da38695f652a46e4ee5350466",
+                "reference": "b5f7b6d5e6df044da38695f652a46e4ee5350466",
                 "shasum": ""
             },
             "require": {
@@ -1047,7 +1047,7 @@
                 }
             ],
             "description": "Control My Budget",
-            "time": "2014-08-07 19:19:16"
+            "time": "2014-08-11 20:24:52"
         },
         {
             "name": "slim/slim",

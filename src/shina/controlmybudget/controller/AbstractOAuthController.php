@@ -44,11 +44,11 @@ abstract class AbstractOAuthController
         $access_token = $this->app->request->get('access_token');
 
         $user = $user_service->getByAccessToken($access_token);
-        if (!$user instanceof User || !$user_service->validateToken($user)) {
+        if (!$user instanceof User) {
             throw new InvalidAccessToken();
         }
 
         return $user;
     }
 
-} 
+}
