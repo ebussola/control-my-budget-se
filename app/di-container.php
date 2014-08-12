@@ -57,7 +57,18 @@ $app->container->singleton(
 $app->container->singleton(
     'http',
     function () {
-        return new \Guzzle\Http\Client();
+        $client = new \Guzzle\Http\Client();
+        $cache = new Guzzle\Plugin\Cache\CachePlugin([
+            'storage' => new \Guzzle\Plugin\Cache\DefaultCacheStorage(
+                    new \Guzzle\Cache\DoctrineCacheAdapter(
+                        new \Doctrine\Common\Cache\FilesystemCache(sys_get_temp_dir())
+                    )
+                )
+        ]);
+
+        $client->addSubscriber($cache);
+
+        return $client;
     }
 );
 
