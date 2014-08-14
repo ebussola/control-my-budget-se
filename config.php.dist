@@ -7,6 +7,8 @@
  */
 
 return array(
+    'env' => 'development',
+
     'db' => array(
         'driver' => 'pdo_mysql',
         'user' => '',

@@ -23,9 +23,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 }
 
 require __DIR__ . '/../vendor/autoload.php';
+$config = include __DIR__ . '/../config.php';
 
-$app = new \Slim\Slim(['debug' => true]);
-$app->container->set('config', include __DIR__ . '/../config.php');
+$app = new \Slim\Slim(['debug' => ($config['env'] == 'development')]);
+$app->container->set('config', $config);
 
 require __DIR__ . '/../app/di-container.php';
 require __DIR__ . '/../app/main.php';
