@@ -10,12 +10,14 @@ namespace shina\controlmybudget\command;
 
 
 use Fetch\Server;
+use Guzzle\Http\Client;
 use shina\controlmybudget\dataprovider\DoctrineDBAL;
 use shina\controlmybudget\ImporterService;
 use shina\controlmybudget\ImportHandler\MailItauCardImport;
 use shina\controlmybudget\ImportHandler\MailItauDebitImport;
 use shina\controlmybudget\ImportHandler\MailItauWithdrawImport;
 use shina\controlmybudget\PurchaseService;
+use shina\controlmybudget\UserService;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -30,6 +32,7 @@ class EmailImport extends Command {
             ->addArgument('login', InputArgument::REQUIRED)
             ->addArgument('password', InputArgument::REQUIRED)
             ->addArgument('mailbox', InputArgument::REQUIRED)
+            ->addArgument('user_id', InputArgument::REQUIRED)
             ->addArgument('firsttime', InputArgument::OPTIONAL, '', false);
     }
 
@@ -44,15 +47,18 @@ class EmailImport extends Command {
         $data_provider = new DoctrineDBAL($conn);
         $purchase_service = new PurchaseService($data_provider);
 
+        $user_service = new UserService($data_provider, new Client());
+        $user = $user_service->getById($params['user_id']);
+
         $importer = new ImporterService();
         $importer->addImporter(new MailItauCardImport($imap, $purchase_service));
         $importer->addImporter(new MailItauDebitImport($imap, $purchase_service));
         $importer->addImporter(new MailItauWithdrawImport($imap, $purchase_service));
 
         if ($params['firsttime']) {
-            $importer->import(null);
+            $importer->import(null, $user);
         } else {
-            $importer->import(3);
+            $importer->import(10, $user);
         }
     }
 
