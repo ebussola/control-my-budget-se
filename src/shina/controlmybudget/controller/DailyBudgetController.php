@@ -23,7 +23,7 @@ class DailyBudgetController extends AbstractOAuthController
         $monthly_goal_service = $this->app->container->get('monthly_goal_service');
 
         $monthly_goal = $monthly_goal_service->getMonthlyGoalById($monthly_goal_id);
-        $daily_budget = $budget_control_service->getDailyBudget($monthly_goal, $this->user, $spent_simulation);
+        $daily_budget = $budget_control_service->getDailyMonthlyBudget($monthly_goal, $this->user, $spent_simulation);
 
         $this->app->response->setBody($daily_budget);
     }

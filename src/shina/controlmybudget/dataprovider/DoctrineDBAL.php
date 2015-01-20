@@ -10,9 +10,11 @@ namespace shina\controlmybudget\dataprovider;
 
 
 use Doctrine\DBAL\Connection;
+use ebussola\common\datatype\datetime\Date;
 use ebussola\goalr\Event;
 use shina\controlmybudget\DataProvider;
 use shina\controlmybudget\MonthlyGoal;
+use shina\controlmybudget\PeriodGoal;
 
 class DoctrineDBAL implements DataProvider {
 
@@ -424,6 +426,64 @@ class DoctrineDBAL implements DataProvider {
     public function deleteUser($user_id)
     {
         return $this->conn->delete($this->_user_table_name, ['id' => $user_id]);
+    }
+
+    /**
+     * @param array $data
+     * @return int
+     */
+    public function insertPeriodGoal($data)
+    {
+        // TODO: Implement insertPeriodGoal() method.
+    }
+
+    /**
+     * @param int $period_goal_id
+     * @param array $data
+     */
+    public function updatePeriodGoal($period_goal_id, $data)
+    {
+        // TODO: Implement updatePeriodGoal() method.
+    }
+
+    /**
+     * @param int[] $ids
+     * @return PeriodGoal[]
+     */
+    public function findPeriodGoalByIds($ids)
+    {
+        // TODO: Implement findPeriodGoalByIds() method.
+    }
+
+    /**
+     * @param Date $date_start
+     * @param Date $date_end
+     * @param int $user_id
+     * @return PeriodGoal[]
+     */
+    public function findPeriodGoalsByPeriod($date_start, $date_end, $user_id)
+    {
+        // TODO: Implement findPeriodGoalsByPeriod() method.
+    }
+
+    /**
+     * @param int $user_id
+     * @param int $page
+     * @param int $page_size
+     * @return PeriodGoal[]
+     */
+    public function findAllPeriodGoals($user_id, $page, $page_size)
+    {
+        // TODO: Implement findAllPeriodGoals() method.
+    }
+
+    /**
+     * @param int $period_goal_id
+     * @return int
+     */
+    public function deletePeriodGoal($period_goal_id)
+    {
+        // TODO: Implement deletePeriodGoal() method.
     }
 
 }
