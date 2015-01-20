@@ -15,6 +15,7 @@ use shina\controlmybudget\dataprovider\DoctrineDBAL;
 use shina\controlmybudget\ImporterService;
 use shina\controlmybudget\ImportHandler\MailItauCardImport;
 use shina\controlmybudget\ImportHandler\MailItauDebitImport;
+use shina\controlmybudget\ImportHandler\MailItauUniclassDebitImport;
 use shina\controlmybudget\ImportHandler\MailItauWithdrawImport;
 use shina\controlmybudget\PurchaseService;
 use shina\controlmybudget\UserService;
@@ -54,6 +55,7 @@ class EmailImport extends Command {
         $importer->addImporter(new MailItauCardImport($imap, $purchase_service));
         $importer->addImporter(new MailItauDebitImport($imap, $purchase_service));
         $importer->addImporter(new MailItauWithdrawImport($imap, $purchase_service));
+        $importer->addImporter(new MailItauUniclassDebitImport($imap, $purchase_service));
 
         if ($params['firsttime']) {
             $importer->import(null, $user);
