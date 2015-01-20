@@ -20,6 +20,7 @@ RUN mv composer.phar /usr/local/bin/composer
 
 RUN echo "date.timezone = America/Sao_Paulo" > /etc/php5/cli/conf.d/20-timezone.ini
 RUN echo "date.timezone = America/Sao_Paulo" > /etc/php5/apache2/conf.d/20-timezone.ini
+RUN echo "intl.default_locale = pt_BR" >> /etc/php5/mods-available/intl.ini
 
 
 RUN a2enmod php5
