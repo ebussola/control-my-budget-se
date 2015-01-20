@@ -1014,20 +1014,20 @@
         },
         {
             "name": "shina/control-my-budget",
-            "version": "0.11.1",
+            "version": "0.11.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/shina/control-my-budget.git",
-                "reference": "f7ee3d33d95b8a35d3cc6a4a17db33469a9d5ad3"
+                "reference": "8094e408f340135bdde986ab3a2426234a094393"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shina/control-my-budget/zipball/f7ee3d33d95b8a35d3cc6a4a17db33469a9d5ad3",
-                "reference": "f7ee3d33d95b8a35d3cc6a4a17db33469a9d5ad3",
+                "url": "https://api.github.com/repos/shina/control-my-budget/zipball/8094e408f340135bdde986ab3a2426234a094393",
+                "reference": "8094e408f340135bdde986ab3a2426234a094393",
                 "shasum": ""
             },
             "require": {
-                "ebussola/common-datatype": "~2.1",
+                "ebussola/common-datatype": "~2.3",
                 "ebussola/goalr": "~1.0",
                 "ext-imap": "*",
                 "ext-tidy": "*",
@@ -1053,7 +1053,7 @@
                 }
             ],
             "description": "Control My Budget",
-            "time": "2015-01-20 17:59:47"
+            "time": "2015-01-20 19:15:54"
         },
         {
             "name": "slim/slim",
